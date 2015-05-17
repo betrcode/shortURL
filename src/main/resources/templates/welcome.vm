@@ -1,2 +1,20 @@
+<html>
+
+<head>
+    <title>shortURL</title>
+</head>
+
+<body>
 From application: $time
 Message: $message
+
+<div id="main">
+    <form action="/" method="post">
+    Enter URL to shorten 
+    <input type="url" name="url">
+    <input type="submit" value="Shorten URL">
+    </form>
+</div>
+
+</body>
+</html>

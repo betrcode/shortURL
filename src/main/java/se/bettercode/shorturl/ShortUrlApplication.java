@@ -1,4 +1,4 @@
-package shorturl;
+package se.bettercode.shorturl;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
