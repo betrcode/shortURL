@@ -24,7 +24,7 @@ public class ShortUrl {
     public String getShortUrl() {
         return shortUrl;
     }
-    
+
     @Override
     public String toString() {
         return String.format(

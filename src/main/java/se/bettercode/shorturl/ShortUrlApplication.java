@@ -15,6 +15,9 @@ import java.util.Map;
 @SpringBootApplication
 public class ShortUrlApplication implements CommandLineRunner {
 
+    @Autowired
+    private ShortUrlRepository repository;
+
     @Value("${application.message}")
     private String message;
 
@@ -27,6 +30,20 @@ public class ShortUrlApplication implements CommandLineRunner {
         model.put("message", this.message);
         System.out.println(VelocityEngineUtils.mergeTemplateIntoString(this.engine,
                 "welcome.vm", "UTF-8", model));
+
+        repository.deleteAll();
+
+        //Save a couple of short URLs
+        repository.save(new ShortUrl("http://www.dn.se/ekonomi/partierna-overens-amorteringskrav-ska-inforas/", "http://betr.de/amoR"));
+        repository.save(new ShortUrl("http://www.dn.se/sport/kan-fa-eget-forbund-efter-skandalen/", "http://betr.de/SkaN"));
+
+        System.out.println("ShortUrls found with findAll():");
+        System.out.println("-------------------------------");
+        for (ShortUrl u : repository.findAll()) {
+            System.out.println(u);
+        }
+        System.out.println();
+
     }
     
     public static void main(String[] args) {
