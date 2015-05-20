@@ -43,7 +43,6 @@ public class ShortUrlApplication implements CommandLineRunner {
             System.out.println(u);
         }
         System.out.println();
-
     }
     
     public static void main(String[] args) {
