@@ -10,8 +10,6 @@ public class ShortUrl {
     private String fullUrl;
     private String shortUrl;
 
-    public ShortUrl() {}
-
     public ShortUrl(String fullUrl, String shortUrl) {
         this.fullUrl = fullUrl;
         this.shortUrl = shortUrl;

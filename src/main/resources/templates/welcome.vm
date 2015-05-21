@@ -16,5 +16,7 @@ Message: $message
     </form>
 </div>
 
+URL: <a href="$url">$url</a> --> <a href="$fullurl">$fullurl</a>
+
 </body>
 </html>

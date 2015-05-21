@@ -35,6 +35,8 @@ public class WelcomeController {
         repository.save(shortUrl);
         model.put("time", new Date());
         model.put("message", this.message);
+        model.put("url", shortUrl.getShortUrl());
+        model.put("fullurl", shortUrl.getFullUrl());
         return "welcome";
     }
 
@@ -46,9 +48,4 @@ public class WelcomeController {
         Random random = new Random(System.currentTimeMillis());
         return "" + random.nextInt();
     }
-
-    private void storeShortUrlInDb(ShortUrl shortUrl) {
-
-    }
-
 }

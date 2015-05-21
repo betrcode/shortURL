@@ -31,7 +31,7 @@ public class ShortUrlApplication implements CommandLineRunner {
         System.out.println(VelocityEngineUtils.mergeTemplateIntoString(this.engine,
                 "welcome.vm", "UTF-8", model));
 
-        repository.deleteAll();
+        //repository.deleteAll();
 
         //Save a couple of short URLs
         repository.save(new ShortUrl("http://www.dn.se/ekonomi/partierna-overens-amorteringskrav-ska-inforas/", "http://betr.de/amoR"));
