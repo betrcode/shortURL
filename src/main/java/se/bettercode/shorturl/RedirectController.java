@@ -24,9 +24,16 @@ public class RedirectController {
         String currentUrl = request.getRequestURL().toString();
         log.debug("Searching for: " + currentUrl);
         ShortUrl shortUrl = repository.findByShortUrl(currentUrl);
-        String destinationUrl = shortUrl.getFullUrl();
-        log.debug("Going to redirect to: " + destinationUrl);
-        httpServletResponse.sendRedirect(destinationUrl);
+
+        if (shortUrl != null) {
+            String destinationUrl = shortUrl.getFullUrl();
+            log.debug("Going to redirect to: " + destinationUrl);
+            httpServletResponse.sendRedirect(destinationUrl);
+        } else {
+            log.debug("Miss!");
+            httpServletResponse.sendRedirect("/");
+        }
+
     }
 
 }
