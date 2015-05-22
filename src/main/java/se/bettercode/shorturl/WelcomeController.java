@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WelcomeController {
+
+    private final Logger log = LoggerFactory.getLogger(WelcomeController.class);
 
     @Autowired
     private ShortUrlRepository repository;
@@ -28,9 +32,9 @@ public class WelcomeController {
 
     @RequestMapping(value="/", method = RequestMethod.POST)
     public String shortenURL(String url, Map<String, Object> model) {
-        System.out.println("Shortening URL: " + url);
+        log.debug("Shortening URL: " + url);
         ShortUrl shortUrl = getRandomShortUrl(url);
-        System.out.println("Result: " + shortUrl.getShortUrl());
+        log.debug("Result: " + shortUrl.getShortUrl());
         this.message = shortUrl.getShortUrl();
         repository.save(shortUrl);
         model.put("time", new Date());

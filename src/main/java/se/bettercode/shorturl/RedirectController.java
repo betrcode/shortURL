@@ -1,5 +1,7 @@
 package se.bettercode.shorturl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,16 +14,18 @@ import java.io.IOException;
 @Controller
 public class RedirectController {
 
+    private final Logger log = LoggerFactory.getLogger(RedirectController.class);
+
     @Autowired
     private ShortUrlRepository repository;
 
     @RequestMapping(value="/**", method = RequestMethod.GET)
     public void redirect(HttpServletRequest request, HttpServletResponse httpServletResponse) throws IOException {
         String currentUrl = request.getRequestURL().toString();
-        System.out.println("Searching for: " + currentUrl);
+        log.debug("Searching for: " + currentUrl);
         ShortUrl shortUrl = repository.findByShortUrl(currentUrl);
-        System.out.println("Going to redirect to: " + shortUrl);
         String destinationUrl = shortUrl.getFullUrl();
+        log.debug("Going to redirect to: " + destinationUrl);
         httpServletResponse.sendRedirect(destinationUrl);
     }
 
