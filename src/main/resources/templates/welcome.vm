@@ -2,21 +2,26 @@
 
 <head>
     <title>shortURL</title>
+    <link rel="stylesheet" type="text/css" href="css/welcome.css">
 </head>
 
 <body>
 From application: $time
 Message: $message
-
-<div id="main">
+<h1>shortURL</h1>
+<p id="main">
     <form action="/" method="post">
     Enter URL to shorten 
     <input type="url" name="url">
     <input type="submit" value="Shorten URL">
     </form>
-</div>
+</p>
 
-URL: <a href="$url">$url</a> --> <a href="$fullurl">$fullurl</a>
+#if($url)
+<p id="result">
+    URL <a href="$fullurl">$fullurl</a> is shortened to <a href="$url">$url</a>
+</p>
+#end
 
 </body>
 </html>

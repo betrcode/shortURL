@@ -3,6 +3,7 @@ package se.bettercode.shorturl;
 import java.util.Date;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,11 +46,11 @@ public class WelcomeController {
     }
 
     private ShortUrl getRandomShortUrl(String url) {
-        return new ShortUrl(url, "http://localhost:8080/" + getShortKey(url));
+        return new ShortUrl(url, "http://localhost:8080/" + getShortKey());
     }
 
-    private String getShortKey(String url) {
-        Random random = new Random(System.currentTimeMillis());
-        return "" + random.nextInt();
+    private String getShortKey() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString().substring(0, 7);
     }
 }

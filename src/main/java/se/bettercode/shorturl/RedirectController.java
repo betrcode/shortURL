@@ -19,21 +19,29 @@ public class RedirectController {
     @Autowired
     private ShortUrlRepository repository;
 
-    @RequestMapping(value="/**", method = RequestMethod.GET)
+    @RequestMapping(value="???????", method = RequestMethod.GET)
     public void redirect(HttpServletRequest request, HttpServletResponse httpServletResponse) throws IOException {
-        String currentUrl = request.getRequestURL().toString();
-        log.debug("Searching for: " + currentUrl);
-        ShortUrl shortUrl = repository.findByShortUrl(currentUrl);
+        ShortUrl shortUrl = findShortUrl(request);
 
         if (shortUrl != null) {
-            String destinationUrl = shortUrl.getFullUrl();
-            log.debug("Going to redirect to: " + destinationUrl);
-            httpServletResponse.sendRedirect(destinationUrl);
+            redirect(httpServletResponse, shortUrl);
         } else {
             log.debug("Miss!");
             httpServletResponse.sendRedirect("/");
         }
 
+    }
+
+    private ShortUrl findShortUrl(HttpServletRequest request) {
+        String currentUrl = request.getRequestURL().toString();
+        log.debug("Searching for: " + currentUrl);
+        return repository.findByShortUrl(currentUrl);
+    }
+
+    private void redirect(HttpServletResponse httpServletResponse, ShortUrl shortUrl)  throws IOException {
+        String destinationUrl = shortUrl.getFullUrl();
+        log.debug("Going to redirect to: " + destinationUrl);
+        httpServletResponse.sendRedirect(destinationUrl);
     }
 
 }
