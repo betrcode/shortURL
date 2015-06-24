@@ -34,7 +34,7 @@ public class WelcomeController {
     @RequestMapping(value="/", method = RequestMethod.POST)
     public String shortenURL(String url, Map<String, Object> model) {
         log.debug("Shortening URL: " + url);
-        ShortUrl shortUrl = getRandomShortUrl(url);
+        ShortUrl shortUrl = ShortUrlFactory.makeShortUrl(url);
         log.debug("Result: " + shortUrl.getShortUrl());
         this.message = shortUrl.getShortUrl();
         repository.save(shortUrl);
@@ -45,12 +45,4 @@ public class WelcomeController {
         return "welcome";
     }
 
-    private ShortUrl getRandomShortUrl(String url) {
-        return new ShortUrl(url, "http://localhost:8080/" + getShortKey());
-    }
-
-    private String getShortKey() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString().substring(0, 7);
-    }
 }
