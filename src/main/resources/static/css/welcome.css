@@ -28,6 +28,13 @@ p {
     margin-bottom: 30px;
 }
 
+a {
+    font: 13px Open Sans;
+    color: #8E8E8E;
+    text-shadow: #000 0px 1px 5px;
+    margin-bottom: 30px;
+}
+
 .form {
     width: 100%;
 }
