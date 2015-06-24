@@ -6,8 +6,10 @@
 </head>
 
 <body>
+<p>
 From application: $time
 Message: $message
+</p>
 <h1>shortURL</h1>
 <p id="main">
     <form action="/" method="post">

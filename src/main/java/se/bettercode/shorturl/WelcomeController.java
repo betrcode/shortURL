@@ -22,6 +22,14 @@ public class WelcomeController {
     @Value("${application.message:Hello World}")
     private String message = "Hello World";
 
+    @Value("${server.address:localhost}")
+    private String serverAddress = "localhost";
+
+    @Value("${server.port:8080}")
+    private String serverPort;
+
+    private ShortUrlFactory shortUrlFactory;
+
     @RequestMapping(value="/", method = RequestMethod.GET)
     public String welcome(Map<String, Object> model) {
         model.put("time", new Date());
@@ -32,9 +40,9 @@ public class WelcomeController {
     @RequestMapping(value="/", method = RequestMethod.POST)
     public String shortenURL(String url, Map<String, Object> model) {
         log.debug("Shortening URL: " + url);
-        ShortUrl shortUrl = ShortUrlFactory.makeShortUrl(url);
+        shortUrlFactory = new ShortUrlFactory("http://" + serverAddress + ":" + serverPort);
+        ShortUrl shortUrl = shortUrlFactory.makeShortUrl(url);
         log.debug("Result: " + shortUrl.getShortUrl());
-        this.message = shortUrl.getShortUrl();
         repository.save(shortUrl);
         model.put("time", new Date());
         model.put("message", this.message);
