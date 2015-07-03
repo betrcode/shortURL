@@ -28,6 +28,9 @@ public class WelcomeController {
     @Value("${server.port:8080}")
     private String serverPort;
 
+    @Value("${application.baseurl}")
+    private String applicationBaseURL;
+
     private ShortUrlFactory shortUrlFactory;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
@@ -40,7 +43,7 @@ public class WelcomeController {
     @RequestMapping(value="/", method = RequestMethod.POST)
     public String shortenURL(String url, Map<String, Object> model) {
         log.debug("Shortening URL: " + url);
-        shortUrlFactory = new ShortUrlFactory("http://" + serverAddress + ":" + serverPort);
+        shortUrlFactory = new ShortUrlFactory(applicationBaseURL);
         ShortUrl shortUrl = shortUrlFactory.makeShortUrl(url);
         log.debug("Result: " + shortUrl.getShortUrl());
         repository.save(shortUrl);
