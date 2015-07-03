@@ -12,7 +12,7 @@ body {
 h1 {
     text-align: center;
     padding: 30px 0px 0px 0px;
-    font: 25px Oswald;
+    font: 35px Oswald;
     color: #FFF;
     text-transform: uppercase;
     text-shadow: #000 0px 1px 5px;
@@ -20,14 +20,14 @@ h1 {
 }
 
 p {
-    font: 13px Open Sans;
+    font: 16px Open Sans;
     color: #AEAEAE;
     text-shadow: #000 0px 1px 5px;
     margin-bottom: 30px;
 }
 
 a {
-    font: 13px Open Sans;
+    font: 16px Open Sans;
     color: #CECECE;
     text-shadow: #000 0px 1px 5px;
     margin-bottom: 30px;
@@ -62,7 +62,7 @@ input[type="submit"] {
     background-image: -moz-linear-gradient(#28D2DE 0%, #1A878F 100%);
     background-image: -o-linear-gradient(#28D2DE 0%, #1A878F 100%);
     background-image: linear-gradient(#28D2DE 0%, #1A878F 100%);
-    font: 14px Oswald;
+    font: 17px Oswald;
     color: #FFF;
     text-transform: uppercase;
     text-shadow: #000 0px 1px 5px;
