@@ -1,10 +1,8 @@
-/*dark background to support form theme*/
 body {
     background: url("/images/abs6.jpg");
     background-color: black;
 }
 
-/*sass variables used*/
 /*site container*/
 .wrapper {
     width: 420px;
@@ -23,14 +21,14 @@ h1 {
 
 p {
     font: 13px Open Sans;
-    color: #6E6E6E;
+    color: #AEAEAE;
     text-shadow: #000 0px 1px 5px;
     margin-bottom: 30px;
 }
 
 a {
     font: 13px Open Sans;
-    color: #8E8E8E;
+    color: #CECECE;
     text-shadow: #000 0px 1px 5px;
     margin-bottom: 30px;
 }
@@ -49,7 +47,7 @@ input[type="url"] {
     border: none;
     border: 1px solid black;
     margin-bottom: 10px;
-    color: #6E6E6E;
+    color: #AEAEAE;
     text-shadow: #000 0px 1px 5px;
 }
 
