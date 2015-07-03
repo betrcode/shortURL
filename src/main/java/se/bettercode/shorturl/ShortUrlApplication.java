@@ -18,6 +18,9 @@ public class ShortUrlApplication implements CommandLineRunner {
     @Value("${application.message}")
     private String message;
 
+    @Value("${spring.data.mongodb.uri}")
+    private String databaseURI;
+
     @Autowired
     private VelocityEngine engine;
 
@@ -30,6 +33,7 @@ public class ShortUrlApplication implements CommandLineRunner {
             log.debug(u.toString());
         }
         */
+        log.debug("Database URI: " + databaseURI);
         log.debug("Short URLs in DB: " + repository.count());
     }
     
