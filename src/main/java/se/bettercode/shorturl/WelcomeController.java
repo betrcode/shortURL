@@ -37,6 +37,8 @@ public class WelcomeController {
     public String welcome(Map<String, Object> model) {
         model.put("time", new Date());
         model.put("message", this.message);
+        model.put("redirects", "0");
+        model.put("shortenedURLs", repository.count());
         return "welcome";
     }
 
@@ -51,6 +53,8 @@ public class WelcomeController {
         model.put("message", this.message);
         model.put("url", shortUrl.getShortUrl());
         model.put("fullurl", shortUrl.getFullUrl());
+        model.put("redirects", "0");
+        model.put("shortenedURLs", repository.count());
         return "welcome";
     }
 

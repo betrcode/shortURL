@@ -27,5 +27,9 @@ Message: $message
 </p>
 #end
 
+<p id="stats">
+    $shortenedURLs URLs shortened and $redirects redirects served.
+</p>
+
 </body>
 </html>
