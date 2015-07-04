@@ -16,4 +16,5 @@ Built a simple shortURL web application using:
 # How to
 * Build: mvn install
 * Run packaged application: java -jar target/shortURL-0.0.1-SNAPSHOT.jar
-* Access application: http://localhost:8081/
+* Or run using foreman: foreman run web
+* Access application: http://localhost:8080/
