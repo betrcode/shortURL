@@ -39,6 +39,8 @@ public class RedirectController {
     }
 
     private void redirect(HttpServletResponse httpServletResponse, ShortUrl shortUrl)  throws IOException {
+        shortUrl.incrementRedirectCount();
+        repository.save(shortUrl);
         String destinationUrl = shortUrl.getFullUrl();
         log.debug("Going to redirect to: " + destinationUrl);
         httpServletResponse.sendRedirect(destinationUrl);

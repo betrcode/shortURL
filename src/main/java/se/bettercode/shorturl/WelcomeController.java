@@ -1,8 +1,5 @@
 package se.bettercode.shorturl;
 
-import java.util.Date;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Date;
+import java.util.Map;
 
 @Controller
 public class WelcomeController {
@@ -37,7 +37,7 @@ public class WelcomeController {
     public String welcome(Map<String, Object> model) {
         model.put("time", new Date());
         model.put("message", this.message);
-        model.put("redirects", "0");
+        model.put("redirects", repository.getTotalRedirectSum());
         model.put("shortenedURLs", repository.count());
         return "welcome";
     }
@@ -53,7 +53,7 @@ public class WelcomeController {
         model.put("message", this.message);
         model.put("url", shortUrl.getShortUrl());
         model.put("fullurl", shortUrl.getFullUrl());
-        model.put("redirects", "0");
+        model.put("redirects", repository.getTotalRedirectSum());
         model.put("shortenedURLs", repository.count());
         return "welcome";
     }

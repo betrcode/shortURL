@@ -4,6 +4,8 @@ import java.util.UUID;
 
 public class ShortUrlFactory {
 
+    public static int STARTING_REDIRECT_COUNT = 0;
+
     private String baseUrl;
 
     public ShortUrlFactory(String baseUrl) {
@@ -11,7 +13,7 @@ public class ShortUrlFactory {
     }
 
     public ShortUrl makeShortUrl(String url) {
-        return new ShortUrl(url, baseUrl + "/" + getShortKey());
+        return new ShortUrl(url, baseUrl + "/" + getShortKey(), STARTING_REDIRECT_COUNT);
     }
 
     static private String getShortKey() {
