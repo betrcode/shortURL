@@ -63,6 +63,13 @@
 			<version>1.16.4</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<version>1.48.0</version>
+		</dependency>
+
 	</dependencies>
 	
 	<build>
