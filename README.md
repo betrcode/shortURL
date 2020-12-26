@@ -14,7 +14,8 @@ Built a simple shortURL web application using:
 * MongoDB
 
 # How to
-* Build: mvn install
-* Run packaged application: java -jar target/shortURL-0.0.1-SNAPSHOT.jar
-* Or run using foreman: foreman run web
+* Build: `mvn install`
+* Start MongoDB: `docker run --name shorturl-mongo -d mongo:latest -p `
+* Run packaged application: `java -jar target/shortURL-0.0.1-SNAPSHOT.jar`
+* Or run using foreman: `foreman run web`
 * Access application: http://localhost:8080/
