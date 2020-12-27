@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,27 +35,27 @@ public class WelcomeController {
     private ShortUrlFactory shortUrlFactory;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String welcome(Map<String, Object> model) {
-        model.put("time", new Date());
-        model.put("message", this.message);
-        model.put("redirects", repository.getTotalRedirectSum());
-        model.put("shortenedURLs", repository.count());
+    public String welcome(Model model) {
+        model.addAttribute("time", new Date());
+        model.addAttribute("message", this.message);
+        model.addAttribute("redirects", repository.getTotalRedirectSum());
+        model.addAttribute("shortenedURLs", repository.count());
         return "welcome";
     }
 
     @RequestMapping(value="/", method = RequestMethod.POST)
-    public String shortenURL(String url, Map<String, Object> model) {
+    public String shortenURL(String url, Model model) {
         log.debug("Shortening URL: " + url);
         shortUrlFactory = new ShortUrlFactory(applicationBaseURL);
         ShortUrl shortUrl = shortUrlFactory.makeShortUrl(url);
         log.debug("Result: " + shortUrl.getShortUrl());
         repository.save(shortUrl);
-        model.put("time", new Date());
-        model.put("message", this.message);
-        model.put("url", shortUrl.getShortUrl());
-        model.put("fullurl", shortUrl.getFullUrl());
-        model.put("redirects", repository.getTotalRedirectSum());
-        model.put("shortenedURLs", repository.count());
+        model.addAttribute("time", new Date());
+        model.addAttribute("message", this.message);
+        model.addAttribute("url", shortUrl.getShortUrl());
+        model.addAttribute("fullurl", shortUrl.getFullUrl());
+        model.addAttribute("redirects", repository.getTotalRedirectSum());
+        model.addAttribute("shortenedURLs", repository.count());
         return "welcome";
     }
 

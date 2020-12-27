@@ -1,6 +1,5 @@
 package se.bettercode.shorturl;
 
-import org.apache.velocity.app.VelocityEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,7 @@ public class ShortUrlApplication implements CommandLineRunner {
     @Value("${spring.data.mongodb.uri}")
     private String databaseURI;
 
-    @Autowired
-    private VelocityEngine engine;
-
     private final Logger log = LoggerFactory.getLogger(ShortUrlApplication.class);
-
 
     public void run(String... args) throws Exception {
         /*

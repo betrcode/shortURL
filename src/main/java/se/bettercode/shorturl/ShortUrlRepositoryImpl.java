@@ -1,8 +1,8 @@
 package se.bettercode.shorturl;
 
 
-import com.mongodb.BasicDBObject;
 import lombok.RequiredArgsConstructor;
+import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ShortUrlRepositoryImpl implements ShortUrlRepositoryCustom {
                 Aggregation.newAggregation(ShortUrl.class,
                         match(Criteria.where("redirectCount").gt(0)),
                         Aggregation.group().sum("redirectCount").as("total")
-                ).withOptions(new AggregationOptions.Builder().cursor(new BasicDBObject()).build()), SumResult.class
+                ).withOptions(new AggregationOptions.Builder().cursor(new Document()).build()), SumResult.class
         );
         // TODO: Fix this properly
         if (results.getMappedResults().isEmpty()) {

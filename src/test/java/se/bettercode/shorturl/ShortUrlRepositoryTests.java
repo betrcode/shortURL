@@ -1,17 +1,15 @@
 package se.bettercode.shorturl;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ShortUrlApplication.class)
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 public class ShortUrlRepositoryTests {
 
     @Autowired
@@ -21,12 +19,12 @@ public class ShortUrlRepositoryTests {
     public void saveAndRetrieveWorks() {
         repository.save(new ShortUrl("http://longurl.com/kjhsdkjfhdskjfds", "http://shrturl.nu/hej", 0));
         ShortUrl shortUrl = repository.findByShortUrl("http://shrturl.nu/hej");
-        assertTrue(shortUrl.getFullUrl().equalsIgnoreCase("http://longurl.com/kjhsdkjfhdskjfds"));
+        Assertions.assertTrue(shortUrl.getFullUrl().equalsIgnoreCase("http://longurl.com/kjhsdkjfhdskjfds"));
     }
 
     @Test
     public void getTotalRedirectSumWorks() {
         Integer total = repository.getTotalRedirectSum();
-        assertTrue(total.intValue()>=0);
+        Assertions.assertTrue(total >= 0);
     }
 }

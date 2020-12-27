@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>shortURL</title>
+    <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+</head>
+
+<body>
+
+<h1>shortURL</h1>
+<p id="main">
+    <form action="/" method="post">
+<p>Enter URL to shorten</p>
+<input type="url" name="url" required>
+<input type="submit" value="Shorten URL">
+</form>
+</p>
+
+<p id="result" th:text="${fullurl} ? ${fullurl} + ' was shortened to ' + ${url} : ''" />
+
+
+<p id="stats" th:text="${shortenedURLs} + ' URLs shortened and ' + ${redirects} + ' URLs served.'" />
+
+</body>
+</html>
