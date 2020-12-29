@@ -19,6 +19,10 @@ public class ShortUrl {
         this.redirectCount = redirectCount != null ? redirectCount : ShortUrlFactory.STARTING_REDIRECT_COUNT;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getFullUrl() {
         return fullUrl;
     }
@@ -27,6 +31,11 @@ public class ShortUrl {
         return shortUrl;
     }
 
+    public Integer getRedirectCount() {
+        return redirectCount;
+    }
+
+    @Deprecated
     protected void incrementRedirectCount() {
         redirectCount++;
     }
