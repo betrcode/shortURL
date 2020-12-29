@@ -1,19 +1,18 @@
 package se.bettercode.shorturl;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.UUID;
 
+@RequiredArgsConstructor
 public class ShortUrlFactory {
 
     public static int STARTING_REDIRECT_COUNT = 0;
 
-    private String baseUrl;
-
-    public ShortUrlFactory(String baseUrl) {
-        this.baseUrl = baseUrl;
-    }
+    private final ConfigProperties configProperties;
 
     public ShortUrl makeShortUrl(String url) {
-        return new ShortUrl(url, baseUrl + "/" + getShortKey(), STARTING_REDIRECT_COUNT);
+        return new ShortUrl(url, configProperties.getBaseurl() + "/" + getShortKey(), STARTING_REDIRECT_COUNT);
     }
 
     static private String getShortKey() {

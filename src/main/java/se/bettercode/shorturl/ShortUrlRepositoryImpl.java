@@ -19,7 +19,7 @@ public class ShortUrlRepositoryImpl implements ShortUrlRepositoryCustom {
 
     private final MongoOperations operations;
 
-    private final Logger log = LoggerFactory.getLogger(ShortUrlRepositoryImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ShortUrlRepositoryImpl.class);
 
     @Override
     public Integer getTotalRedirectSum() {

@@ -7,7 +7,10 @@ package se.bettercode.shorturl;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
 public interface ShortUrlRepository extends MongoRepository<ShortUrl, String> {
+    List<ShortUrl> findAll();
     ShortUrl findByFullUrl(String fullUrl);
     ShortUrl findByShortUrl(String shortUrl);
     Integer getTotalRedirectSum();

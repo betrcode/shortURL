@@ -15,7 +15,7 @@ import java.io.IOException;
 @AllArgsConstructor
 public class RedirectController {
 
-    private final Logger log = LoggerFactory.getLogger(RedirectController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RedirectController.class);
 
     private final ShortUrlRepository repository;
 
@@ -26,7 +26,7 @@ public class RedirectController {
         if (shortUrl != null) {
             redirect(httpServletResponse, shortUrl);
         } else {
-            log.debug("Miss!");
+            LOG.debug("Miss!");
             httpServletResponse.sendRedirect("/");
         }
 
@@ -34,7 +34,7 @@ public class RedirectController {
 
     private ShortUrl findShortUrl(HttpServletRequest request) {
         String currentUrl = request.getRequestURL().toString();
-        log.debug("Searching for: " + currentUrl);
+        LOG.debug("Searching for: " + currentUrl);
         return repository.findByShortUrl(currentUrl);
     }
 
@@ -42,7 +42,7 @@ public class RedirectController {
         shortUrl.incrementRedirectCount();
         repository.save(shortUrl);
         String destinationUrl = shortUrl.getFullUrl();
-        log.debug("Going to redirect to: " + destinationUrl);
+        LOG.debug("Going to redirect to: " + destinationUrl);
         httpServletResponse.sendRedirect(destinationUrl);
     }
 
