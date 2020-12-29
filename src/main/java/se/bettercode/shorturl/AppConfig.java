@@ -3,6 +3,7 @@ package se.bettercode.shorturl;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 
@@ -10,12 +11,14 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 @AllArgsConstructor
 public class AppConfig {
 
+    private final ConfigurableEnvironment env;
     private final ConfigProperties configProperties;
     private final MongoTemplate mongoTemplate;
+    private final ServerPortService serverPortService;
 
     @Bean
     public ShortUrlFactory shortUrlFactory() {
-        return new ShortUrlFactory(configProperties);
+        return new ShortUrlFactory(env, serverPortService, configProperties);
     }
     
     @Bean

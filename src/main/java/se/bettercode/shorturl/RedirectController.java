@@ -18,12 +18,14 @@ public class RedirectController {
     private static final Logger LOG = LoggerFactory.getLogger(RedirectController.class);
 
     private final ShortUrlRepository repository;
+    private final MongoDAO mongoDAO;
 
     @RequestMapping(value="???????", method = RequestMethod.GET)
     public void redirect(HttpServletRequest request, HttpServletResponse httpServletResponse) throws IOException {
         ShortUrl shortUrl = findShortUrl(request);
 
         if (shortUrl != null) {
+            LOG.debug("Hit!");
             redirect(httpServletResponse, shortUrl);
         } else {
             LOG.debug("Miss!");
@@ -39,8 +41,7 @@ public class RedirectController {
     }
 
     private void redirect(HttpServletResponse httpServletResponse, ShortUrl shortUrl)  throws IOException {
-        shortUrl.incrementRedirectCount();
-        repository.save(shortUrl);
+        mongoDAO.incrementRedirectCounter(shortUrl);
         String destinationUrl = shortUrl.getFullUrl();
         LOG.debug("Going to redirect to: " + destinationUrl);
         httpServletResponse.sendRedirect(destinationUrl);

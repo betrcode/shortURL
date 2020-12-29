@@ -1,49 +1,30 @@
 package se.bettercode.shorturl;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class ShortUrl {
 
     @Id
     private String id;
 
+    @NonNull
     private String fullUrl;
+    @NonNull
     private String shortUrl;
-    private Integer redirectCount = 0;
+    @NonNull
+    private long redirectCount;
 
-    public ShortUrl(String fullUrl, String shortUrl, Integer redirectCount) {
-        this.fullUrl = fullUrl;
-        this.shortUrl = shortUrl;
-        this.redirectCount = redirectCount != null ? redirectCount : ShortUrlFactory.STARTING_REDIRECT_COUNT;
+    public ShortUrl(String fullUrl, String shortUrl) {
+        this(fullUrl, shortUrl, 0);
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getFullUrl() {
-        return fullUrl;
-    }
-
-    public String getShortUrl() {
-        return shortUrl;
-    }
-
-    public Integer getRedirectCount() {
-        return redirectCount;
-    }
-
-    @Deprecated
-    protected void incrementRedirectCount() {
-        redirectCount++;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "ShortUrl[id=%s, fullUrl='%s', shortUrl='%s', redirectCount='%s']",
-                id, fullUrl, shortUrl, redirectCount);
-    }
 }

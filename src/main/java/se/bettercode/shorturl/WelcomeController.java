@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @Controller
@@ -29,7 +30,7 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String shortenURL(String url, Model model) {
+    public String shortenURL(String url, Model model, HttpServletResponse response) {
         ShortUrl shortUrl = shortUrlFactory.makeShortUrl(url);
         LOG.info("Shortened URL: {} to: {}", url, shortUrl.getShortUrl());
         repository.save(shortUrl);
@@ -38,6 +39,7 @@ public class WelcomeController {
         model.addAttribute("fullurl", shortUrl.getFullUrl());
         model.addAttribute("redirects", mongoDAO.getTotalRedirectSum());
         model.addAttribute("shortenedURLs", repository.count());
+        response.setHeader("X-ShortUrl", shortUrl.getShortUrl());
         return "welcome";
     }
 

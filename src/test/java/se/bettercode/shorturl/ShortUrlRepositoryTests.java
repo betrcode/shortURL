@@ -32,24 +32,7 @@ public class ShortUrlRepositoryTests {
 
     @Test
     public void getTotalRedirectSumWorks() {
-        Assertions.assertTrue(mongoDAO.getTotalRedirectSum() >= 0);
-    }
-
-    @Test
-    @Disabled("Does not work - but keeping to show as example")
-    public void incrementWorks() {
-        final String shortenedUrl = "http://shrturl.nu/" + UUID.randomUUID().toString();
-        repository.save(new ShortUrl("http://longurl.com/incrementor", shortenedUrl, 0));
-
-        // Increment the counter in parallel to make sure we update it atomically
-        IntStream.range(0, 100).parallel().forEach(i -> {
-            ShortUrl shortUrl = repository.findByShortUrl(shortenedUrl);
-            shortUrl.incrementRedirectCount();
-            repository.save(shortUrl);
-        });
-
-        ShortUrl shortUrl = repository.findByShortUrl(shortenedUrl);
-        Assertions.assertEquals(100, shortUrl.getRedirectCount());
+        Assertions.assertTrue(mongoDAO.getTotalRedirectSum() >= 0L);
     }
 
     @Test
