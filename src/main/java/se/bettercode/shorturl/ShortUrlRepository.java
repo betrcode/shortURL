@@ -13,5 +13,4 @@ public interface ShortUrlRepository extends MongoRepository<ShortUrl, String> {
     List<ShortUrl> findAll();
     ShortUrl findByFullUrl(String fullUrl);
     ShortUrl findByShortUrl(String shortUrl);
-    Integer getTotalRedirectSum();
 }

@@ -1,7 +1,9 @@
 package se.bettercode.shorturl;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document
 public class ShortUrl {
 
     @Id

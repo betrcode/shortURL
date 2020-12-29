@@ -20,15 +20,15 @@ public class ShortUrlApplication implements CommandLineRunner {
     private static final Logger LOG = LoggerFactory.getLogger(ShortUrlApplication.class);
 
     private final ConfigurableEnvironment env;
-    private final ShortUrlRepository repository;
     private final ConfigProperties configProperties;
+    private final ShortUrlRepository repository;
 
     @Value("${spring.data.mongodb.uri}")
     private String databaseURI;
 
     public void run(String... args) throws Exception {
         LOG.info("Message: " + configProperties.getMessage());
-        if (Arrays.stream(env.getActiveProfiles()).allMatch(p -> p.equals("dev"))) {
+        if (Arrays.asList(env.getActiveProfiles()).contains("dev")) {
             for (ShortUrl u : repository.findAll()) {
                 LOG.debug(u.toString());
             }

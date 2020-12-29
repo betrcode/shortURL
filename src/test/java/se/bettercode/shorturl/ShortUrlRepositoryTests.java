@@ -17,6 +17,9 @@ public class ShortUrlRepositoryTests {
     @Autowired
     ShortUrlRepository repository;
 
+    @Autowired
+    MongoDAO mongoDAO;
+
     @Test
     public void saveAndRetrieveWorks() {
         final String shortenedUrl = "http://shrturl.nu/" + UUID.randomUUID().toString();
@@ -27,7 +30,6 @@ public class ShortUrlRepositoryTests {
 
     @Test
     public void getTotalRedirectSumWorks() {
-        Integer total = repository.getTotalRedirectSum();
-        Assertions.assertTrue(total >= 0);
+        Assertions.assertTrue(mongoDAO.getTotalRedirectSum() >= 0);
     }
 }
